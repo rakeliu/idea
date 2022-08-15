@@ -1,13 +1,10 @@
 package org.ymliu.example.quality;
 
-import org.ymliu.example.quality.bean.ItemValidate;
-import org.ymliu.example.quality.bean.ProductValidate;
-
 public class ValidateTest
 {
 	public static void main(String args[])
 	{
-		QualityApi api = new QualityApi();
+		ValidateApi api = new ValidateApi();
 
 		String ret = api.valid("productId", "itemId", "5");
 

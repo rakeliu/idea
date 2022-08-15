@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 import org.ymliu.example.quality.bean.ItemValidate;
 import org.ymliu.example.quality.bean.ProductValidate;
 import org.ymliu.example.quality.bean.ValidateRule;
-import org.ymliu.example.quality.validate.AbstractValidateMethod;
-import org.ymliu.example.quality.validate.ValidateMethodEq;
+import org.ymliu.example.quality.action.ValidateAction;
+import org.ymliu.example.quality.action.ValidateActionEq;
 
-public class QualityApi
+public class ValidateApi
 {
 	public String valid(String productId, String itemId, String itemValue)
 	{
@@ -33,7 +33,7 @@ public class QualityApi
 		boolean result = iv.getLogic() == 'A';
 		for (ValidateRule rule : rules)
 		{
-			AbstractValidateMethod method = AbstractValidateMethod.getValidateMethod(rule.getMethodType());
+			ValidateAction method = ValidateAction.getAction(rule.getMethodType());
 			boolean ret = method.doValid(itemValue, rule.getRuleText(), iv.getDataType());
 
 			if (iv.getLogic() == 'A')
@@ -70,6 +70,6 @@ public class QualityApi
 	}
 
 	private void initAbstractValidate(){
-		new ValidateMethodEq("1");
+		new ValidateActionEq("1");
 	}
 }

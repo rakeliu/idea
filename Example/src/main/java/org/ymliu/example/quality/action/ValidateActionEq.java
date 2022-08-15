@@ -1,4 +1,4 @@
-package org.ymliu.example.quality.validate;
+package org.ymliu.example.quality.action;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -6,26 +6,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class ValidateMethodEq extends AbstractValidateMethod
+/**
+ * Validate Action is Equal(EQ).
+ */
+public class ValidateActionEq extends ValidateAction
 {
-	public ValidateMethodEq(String id)
+	public ValidateActionEq(String id)
 	{
 		super(id);
 		this.setMethodType("EQ");
 	}
 
 	/**
-	 * Validate the src is equals ruleText.
-	 * If dataType is S (String)， call Strings.Equals.
-	 * If dataType is N (Decimal), call Decimal.compareTo == 0, and setScale.
-	 * NOTE:
-	 * if dataType is N (Decimal), setScale reduces scale.
+	 * Validate whether the src is validated with ruleText, their data type were "dataType".
+	 * If "dataType" is "N", convert to Big Decimal
 	 *
-	 * @param src
-	 * @param ruleText
-	 * @param dataType
-	 * @param scale
-	 * @return
+	 * @param src the value of product item's value.
+	 * @param ruleText validate ruleText, standard value/range to valid.
+	 * @param dataType S - String, N - BigDecimal, D - Datetime.
+	 * @param scale scale when "dataType" is "N", reserved for the future.
+	 * @return true - valid passed, false - otherwise.
 	 */
 	@Override
 	public boolean doValid(String src, String ruleText, char dataType, int... scale)
@@ -62,7 +62,6 @@ public class ValidateMethodEq extends AbstractValidateMethod
 			}
 			return dates.length>0 && dates[0].equals(date);
 		}
-
 
 		return false;
 	}
