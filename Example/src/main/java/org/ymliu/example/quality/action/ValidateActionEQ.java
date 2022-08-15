@@ -1,17 +1,15 @@
 package org.ymliu.example.quality.action;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * Validate Action is Equal(EQ).
  */
-public class ValidateActionEq extends ValidateAction
+public class ValidateActionEQ extends ValidateAction
 {
-	public ValidateActionEq(String id)
+	public ValidateActionEQ(String id)
 	{
 		super(id);
 		this.setMethodType("EQ");
@@ -48,18 +46,7 @@ public class ValidateActionEq extends ValidateAction
 		if (dataType == 'D'){
 			// Datetime
 			Date[] dates = this.parseValue(ruleText, Date.class);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-			Date date;
-			try
-			{
-				date = sdf.parse(src);
-			}
-			catch (ParseException e)
-			{
-				// TODO log exception.
-				System.out.printf("runtime exception: %s", e);
-				return false;
-			}
+			Date date = this.convertDate(src);
 			return dates.length>0 && dates[0].equals(date);
 		}
 

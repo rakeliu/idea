@@ -9,6 +9,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Abstract Validate Action.
+ * The method doValid validates item's data with ruleText.
+ * The action is implemented in subclass named with ValidateActionXX, and "XX" is:
+ *   EQ - Equal
+ *   NE - Not Equal
+ *   LT - Less Than
+ *   LE - Less Than or Equal
+ *   GT - Grater Than
+ *   GE - Grater Than or Equal
+ *   IN - In (xx,xx,xx) collection.
+ *   NN - Not Null, include "not null", "", 0, size()!=0, length !=0.
+ *
+ */
 public abstract class ValidateAction
 {
 	private static final Map<String, ValidateAction> map = new HashMap<>(0);
@@ -124,7 +138,7 @@ public abstract class ValidateAction
 	 * @param src Date string with one of more formats.
 	 * @return java.util.Date.
 	 */
-	private Date convertDate(String src){
+	protected Date convertDate(String src){
 		Date date = null;
 		for (SimpleDateFormat sdf : innerSdfArray){
 			try
