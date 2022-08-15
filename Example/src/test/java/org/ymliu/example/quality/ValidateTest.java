@@ -5,9 +5,19 @@ import org.ymliu.example.quality.bean.ProductValidate;
 
 public class ValidateTest
 {
-	public static void main(String args[]){
-		ProductValidate p1 = new ProductValidate("product", "ProductID1", "ItemID11",0);
+	public static void main(String args[])
+	{
+		QualityApi api = new QualityApi();
 
-		ItemValidate i11 = new ItemValidate("item", "ItemID11", 'S', 'A', "error");
+		String ret = api.valid("productId", "itemId", "5");
+
+		if (null == ret)
+		{
+			System.out.println("All validations passed!");
+		}
+		else
+		{
+			System.out.printf("ret = %s\n", ret);
+		}
 	}
 }

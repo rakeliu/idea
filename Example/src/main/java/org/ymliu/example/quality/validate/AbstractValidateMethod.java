@@ -1,5 +1,6 @@
 package org.ymliu.example.quality.validate;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,7 +76,9 @@ public abstract class AbstractValidateMethod
 		{
 			String[] s = Arrays.stream(ruleText.split("\\|")).filter(str -> str != null && !"".equals(str)).toArray(String[]::new);
 
-			@SuppressWarnings("unchecked") T[] newArray = (T[]) new Object[s.length];
+			@SuppressWarnings("unchecked")
+			//T[] newArray = (T[]) new Object[s.length];
+			T[] newArray= (T[]) Array.newInstance(clazz, s.length);
 			for (int i = 0; i < s.length; i++)
 			{
 				if (clazz == String.class)

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 产品校验
  */
-public class ProductValidate implements IValid
+public class ProductValidate
 {
 	private final String id;
 	private final String productId;
@@ -31,14 +31,6 @@ public class ProductValidate implements IValid
 		this.productId = productId;
 		this.itemId = itemId;
 		this.itemOrder = itemOrder;
-	}
-
-	public boolean valid(){
-		boolean ret = true;
-		for (ItemValidate item : list){
-			ret &= item.valid();
-		}
-		return ret;
 	}
 
 	public String getId()

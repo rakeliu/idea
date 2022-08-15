@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 数据项校验
  */
-public class ItemValidate implements IValid
+public class ItemValidate
 {
 	private final String id;
 	private final String itemId;
@@ -37,29 +37,6 @@ public class ItemValidate implements IValid
 		this.error = error;
 	}
 
-	@Override
-	public boolean valid()
-	{
-		boolean result = logic == 'A';
-		for (ValidateRule rule : rules)
-		{
-			boolean ret = rule.valid();
-
-			if (logic == 'A')
-			{
-				result &= ret;
-			}
-			else
-			{
-				result |= ret;
-			}
-
-			if (!result){
-				return false;
-			}
-		}
-		return true;
-	}
 
 	public String getId()
 	{

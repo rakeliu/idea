@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author LiuYamin
  */
-public class ValidateRule implements IValid
+public class ValidateRule
 {
 	private final String id;
 	private final String itemId;
@@ -45,4 +45,33 @@ public class ValidateRule implements IValid
 		this.ruleText = ruleText;
 	}
 
+	public String getId()
+	{
+		return id;
+	}
+
+	public String getItemId()
+	{
+		return itemId;
+	}
+
+	public int getRuleOrder()
+	{
+		return ruleOrder;
+	}
+
+	public String getMethodId()
+	{
+		return methodId;
+	}
+
+	public String getMethodType()
+	{
+		return methodType;
+	}
+
+	public String getRuleText()
+	{
+		return ruleText;
+	}
 }
