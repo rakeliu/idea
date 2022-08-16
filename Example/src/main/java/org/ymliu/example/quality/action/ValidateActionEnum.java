@@ -2,9 +2,11 @@ package org.ymliu.example.quality.action;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -45,7 +47,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) == 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) == 0;
+			}
+			return false;
+			//return decs.length > 0 && decs[0].compareTo(dec) == 0;
 		}
 
 		if (dataType == 'D')
@@ -73,7 +83,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) != 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) != 0;
+			}
+			return false;
+			//return decs.length > 0 && decs[0].compareTo(dec) != 0;
 		}
 
 		if (dataType == 'D')
@@ -110,7 +128,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) < 0;
+			//return decs.length > 0 && dec.compareTo(decs[0]) < 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) < 0;
+			}
+			return false;
 		}
 
 		if (dataType == 'D')
@@ -118,7 +144,7 @@ public enum ValidateActionEnum
 			// Datetime
 			Date[] dates = parseValue(ruleText, Date.class);
 			Date date = convertDate(src);
-			return dates.length > 0 && dates[0].compareTo(date) < 0;
+			return dates.length > 0 && date.compareTo(dates[0]) < 0;
 		}
 		return false;
 	}),
@@ -140,7 +166,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) <= 0;
+			//return decs.length > 0 && dec.compareTo(decs[0]) <= 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) <= 0;
+			}
+			return false;
 		}
 
 		if (dataType == 'D')
@@ -148,7 +182,7 @@ public enum ValidateActionEnum
 			// Datetime
 			Date[] dates = parseValue(ruleText, Date.class);
 			Date date = convertDate(src);
-			return dates.length > 0 && dates[0].compareTo(date) <= 0;
+			return dates.length > 0 && date.compareTo(dates[0]) <= 0;
 		}
 		return false;
 	}),
@@ -171,7 +205,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) > 0;
+			//return decs.length > 0 && dec.compareTo(decs[0]) > 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) > 0;
+			}
+			return false;
 		}
 
 		if (dataType == 'D')
@@ -179,7 +221,7 @@ public enum ValidateActionEnum
 			// Datetime
 			Date[] dates = parseValue(ruleText, Date.class);
 			Date date = convertDate(src);
-			return dates.length > 0 && dates[0].compareTo(date) > 0;
+			return dates.length > 0 && date.compareTo(dates[0]) > 0;
 		}
 		return false;
 	}),
@@ -201,7 +243,15 @@ public enum ValidateActionEnum
 			// BigDecimal
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
-			return decs.length > 0 && decs[0].compareTo(dec) >= 0;
+			// return decs.length > 0 && dec.compareTo(decs[0]) >= 0;
+			if (decs.length > 0)
+			{
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+				return dec.compareTo(decs[0]) >= 0;
+			}
+			return false;
 		}
 
 		if (dataType == 'D')
@@ -209,7 +259,7 @@ public enum ValidateActionEnum
 			// Datetime
 			Date[] dates = parseValue(ruleText, Date.class);
 			Date date = convertDate(src);
-			return dates.length > 0 && dates[0].compareTo(date) >= 0;
+			return dates.length > 0 && date.compareTo(dates[0]) >= 0;
 		}
 		return false;
 	}),
@@ -238,7 +288,10 @@ public enum ValidateActionEnum
 			if (decs.length == 0) {return false;}
 			for (BigDecimal d : decs)
 			{
-				if (Objects.equals(dec, d)) {return true;}
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				d = d.setScale(maxScale, RoundingMode.UNNECESSARY);
+				if (dec.compareTo(d) == 0) {return true;}
 			}
 			return false;
 		}
@@ -282,7 +335,11 @@ public enum ValidateActionEnum
 			if (decs.length == 0) {return true;}
 			for (BigDecimal d : decs)
 			{
-				if (Objects.equals(dec, d)) {return false;}
+				int maxScale = Math.max(decs[0].scale(), dec.scale());
+				dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+				d = d.setScale(maxScale, RoundingMode.UNNECESSARY);
+				if (dec.compareTo(d) == 0) {return false;}
+				//if (Objects.equals(dec, d)) {return false;}
 			}
 			return true;
 		}
@@ -308,7 +365,7 @@ public enum ValidateActionEnum
 	NN("NN", (String src, String ruleText, char dataType, int... scale) -> {
 		// ignore dataType check.
 		return null != src && src.trim().length() > 0;
-
+		// TODO: Unchecked Numeric cast error.
 	}),
 	/**
 	 * Grater Than & Less Than, min < x < max.
@@ -329,6 +386,11 @@ public enum ValidateActionEnum
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
 			if (decs.length < 2) {return true;}
+			int maxScale = Math.max(decs[0].scale(), decs[1].scale());
+			maxScale = Math.max(maxScale, dec.scale());
+			dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[1] = decs[1].setScale(maxScale, RoundingMode.UNNECESSARY);
 			return dec.compareTo(decs[0]) > 0 && dec.compareTo(decs[1]) < 0;
 		}
 
@@ -361,6 +423,11 @@ public enum ValidateActionEnum
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
 			if (decs.length < 2) {return true;}
+			int maxScale = Math.max(decs[0].scale(), decs[1].scale());
+			maxScale = Math.max(maxScale, dec.scale());
+			dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[1] = decs[1].setScale(maxScale, RoundingMode.UNNECESSARY);
 			return dec.compareTo(decs[0]) >= 0 && dec.compareTo(decs[1]) < 0;
 		}
 
@@ -393,6 +460,11 @@ public enum ValidateActionEnum
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
 			if (decs.length < 2) {return true;}
+			int maxScale = Math.max(decs[0].scale(), decs[1].scale());
+			maxScale = Math.max(maxScale, dec.scale());
+			dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[1] = decs[1].setScale(maxScale, RoundingMode.UNNECESSARY);
 			return dec.compareTo(decs[0]) > 0 && dec.compareTo(decs[1]) <= 0;
 		}
 
@@ -425,6 +497,11 @@ public enum ValidateActionEnum
 			BigDecimal[] decs = parseValue(ruleText, BigDecimal.class);
 			BigDecimal dec = new BigDecimal(src);
 			if (decs.length < 2) {return true;}
+			int maxScale = Math.max(decs[0].scale(), decs[1].scale());
+			maxScale = Math.max(maxScale, dec.scale());
+			dec = dec.setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[0] = decs[0].setScale(maxScale, RoundingMode.UNNECESSARY);
+			decs[1] = decs[1].setScale(maxScale, RoundingMode.UNNECESSARY);
 			return dec.compareTo(decs[0]) >= 0 && dec.compareTo(decs[1]) <= 0;
 		}
 
@@ -564,6 +641,38 @@ public enum ValidateActionEnum
 	 */
 	private static Date convertDate(String src)
 	{
+		if (null == src || src.trim().length() == 0)
+		{
+			throw new NullPointerException("empty string cannot be convert to date");
+		}
+
+		// Relative Date.
+		if (src.matches("(\\+|-)?[0-9]+(Y|y|M|m|D|d|W|w)"))
+		{
+			// Relative Date.
+			String sType = src.substring(src.length() - 1).toUpperCase();
+			String s = src.substring(0, src.length() - 1);
+			int i = Integer.parseInt(s);
+			Calendar calendar = Calendar.getInstance();
+			switch (sType)
+			{
+				case "Y":
+					calendar.add(Calendar.YEAR, i); /* year */
+					break;
+				case "M":
+					calendar.add(Calendar.MONTH, i); /* month */
+					break;
+				case "D":
+					calendar.add(Calendar.DATE, i); /* day, day-of-month */
+					break;
+				case "W":
+					calendar.add(Calendar.WEEK_OF_YEAR, i); /* week */
+					break;
+			}
+			return calendar.getTime();
+		}
+
+		// Absolute Date.
 		Date date;
 		for (SimpleDateFormat sdf : innerSdfArray)
 		{
@@ -578,6 +687,12 @@ public enum ValidateActionEnum
 			return date;
 		}
 		throw new RuntimeException("Invalid date format: " + src);
+	}
+
+	private static Date relativeDate(String ret)
+	{
+		//if (ret.matches("YMD"))
+		return null;
 	}
 
 	public boolean doValid(String src, String ruleText, char dataType, int... scale)

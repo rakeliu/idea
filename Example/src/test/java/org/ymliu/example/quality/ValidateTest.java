@@ -8,7 +8,8 @@ public class ValidateTest
 	{
 		ValidateApi api = new ValidateApi();
 
-		ValidateResult result = api.valid("productId", "itemId", "6");
+		//ValidateResult result = api.valid("productId", "itemId", "6.00");
+		ValidateResult result = api.valid("productId", "itemId", "2022-7-1");
 
 		System.out.printf("code = %d, message = %s", result.getCode(), result.getMessage());
 	}
