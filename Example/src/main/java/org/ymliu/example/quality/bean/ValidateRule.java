@@ -1,11 +1,5 @@
 package org.ymliu.example.quality.bean;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 校验规则，一条。
  *
@@ -19,6 +13,7 @@ public class ValidateRule
 	private final String methodId;
 	private final String methodType;
 	private final String ruleText;
+	private final String warningTemplate;
 
 
 	public ValidateRule(String id)
@@ -32,9 +27,10 @@ public class ValidateRule
 		this.methodId = "MethodID";
 		this.methodType = "EQ";
 		this.ruleText = "ruleText";
+		this.warningTemplate ="未定义错误信息";
 	}
 
-	public ValidateRule(String id, String itemId, int ruleOrder, String methodId, String methodType, String ruleText)
+	public ValidateRule(String id, String itemId, int ruleOrder, String methodId, String methodType, String ruleText, String warningTemplate)
 	{
 		// TODO example
 		this.id = id;
@@ -43,6 +39,7 @@ public class ValidateRule
 		this.methodId = methodId;
 		this.methodType = methodType;
 		this.ruleText = ruleText;
+		this.warningTemplate = warningTemplate;
 	}
 
 	public String getId()
@@ -73,5 +70,10 @@ public class ValidateRule
 	public String getRuleText()
 	{
 		return ruleText;
+	}
+
+	public String getWarningTemplate()
+	{
+		return warningTemplate;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.Objects;
 /**
  * Validate Action is Not Equal (NE).
  */
+@Deprecated
 public class ValidateActionNE extends ValidateAction
 {
 

@@ -1,6 +1,6 @@
 package org.ymliu.example.quality.action;
 
-public interface ValidInterface
+public interface ActionInterface
 {
 	/**
 	 * Validate whether the src is validated with ruleText, their data type were "dataType".

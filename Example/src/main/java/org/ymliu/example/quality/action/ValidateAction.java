@@ -21,8 +21,9 @@ import java.util.Map;
  *   GE - Grater Than or Equal
  *   IN - In (xx,xx,xx) collection.
  *   NN - Not Null, include "not null", "", 0, size()!=0, length !=0.
- *
+ * Deprecated. See ValidateActionEnum.
  */
+@Deprecated
 public abstract class ValidateAction
 {
 	private static final Map<String, ValidateAction> map = new HashMap<>(0);

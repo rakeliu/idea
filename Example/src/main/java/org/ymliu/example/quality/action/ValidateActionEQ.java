@@ -7,6 +7,7 @@ import java.util.Objects;
 /**
  * Validate Action is Equal(EQ).
  */
+@Deprecated
 public class ValidateActionEQ extends ValidateAction
 {
 	public ValidateActionEQ(String id)

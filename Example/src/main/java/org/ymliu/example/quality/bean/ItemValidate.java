@@ -11,6 +11,7 @@ public class ItemValidate
 	private final String itemId;
 	private final char dataType; // S-String, N-BigDecimal, D-Datetime
 	private final char logic; // A: AND; O: OR
+	@Deprecated
 	private final String error;
 
 	private List<ValidateRule> rules; //
