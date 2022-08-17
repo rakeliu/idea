@@ -20,7 +20,7 @@ public class ValidateApi
 	 * @param value value to be valid.
 	 * @return validate result.
 	 */
-	public ValidateResult validateProxy(ItemValidate iv, List<ValidateRule> rules, String value)
+	public ValidateResult validate(ItemValidate iv, List<ValidateRule> rules, String value)
 	{
 		if (null == iv || null == rules || rules.size() == 0)
 		{
@@ -37,10 +37,10 @@ public class ValidateApi
 			for (ValidateRule rule : rules)
 			{
 				// Really valid.
-				// Then check valid-result one by one rule to improve performance.
-				ret = ValidateActionEnum.getAction(rule.getMethodType()).doValid(value, rule.getRuleText(), iv.getDataType());
+				ret = ValidateActionEnum.getAction(rule.getMethodType()).validate(value, rule.getRuleText(), iv.getDataType());
 
 				// TODO: how to improve performance only tow conditions below ?
+				// Then check valid-result one by one rule to improve performance.
 
 				// Logic is AND, return NOT PASSED when any result was false.
 				if (iv.getLogic() == 'A' && !ret)
@@ -74,7 +74,7 @@ public class ValidateApi
 		return iv.getLogic() == 'A' ? ValidateResult.PASSED : new ValidateResult(-1, this.getErrMsg(iv.getTemplate(), "", value));
 	}
 
-	public ValidateResult valid(String productId, String itemId, String value)
+	public ValidateResult validate(String productId, String itemId, String value)
 	{
 		// TODO: Get ProductValidate by  productId, Maybe it was ignores.
 		ProductValidate pv = null;
@@ -83,7 +83,7 @@ public class ValidateApi
 		// TODO: Get ValidateRule LIST (Sorted/Unsorted) by itemId;
 		List<ValidateRule> rules = null;
 
-		return this.validateProxy(iv, rules, value);
+		return this.validate(iv, rules, value);
 	}
 
 

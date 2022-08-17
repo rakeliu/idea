@@ -532,7 +532,7 @@ public enum ValidateActionEnum
 		return ret;
 	});
 
-	private static final String regexRelativeDate = "([+\\-])?[1-9][0-9]+([YMDymd])";
+	private static final String regexRelativeDate = "[+\\-]?[1-9][0-9]*[YyMmDdWw]";
 	private static final SimpleDateFormat[] innerSdfArray = new SimpleDateFormat[]{
 			new SimpleDateFormat("yyyy-MM-dd"),
 			new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"),
@@ -689,8 +689,8 @@ public enum ValidateActionEnum
 		throw new RuntimeException("Invalid date format: " + src);
 	}
 
-	public boolean doValid(String src, String ruleText, char dataType, int... scale)
+	public boolean validate(String src, String ruleText, char dataType, int... scale)
 	{
-		return action.valid(src, ruleText, dataType, scale);
+		return action.doValidate(src, ruleText, dataType, scale);
 	}
 }

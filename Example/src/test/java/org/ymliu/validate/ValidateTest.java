@@ -19,17 +19,17 @@ public class ValidateTest
 
 		// Valid Date
 		iv = new ItemValidate("", "", 'D', 'A', "");
-		result = api.validateProxy(iv, getRulesDate(), "2022-7-1");
+		result = api.validate(iv, getRulesDate(), "2022-7-1");
 		System.out.printf("Validate Date:  code = %d, message = %s\n", result.getCode(), result.getMessage());
 
 		// Valid Numeric
 		iv = new ItemValidate("", "", 'N', 'A', "");
-		result = api.validateProxy(iv, getRulesNumber(), "7");
+		result = api.validate(iv, getRulesNumber(), "7");
 		System.out.printf("Validate Numeric:  code = %d, message = %s\n", result.getCode(), result.getMessage());
 
 		// Valid String
 		iv = new ItemValidate("", "", 'S', 'O', "");
-		result = api.validateProxy(iv, getRulesNumber(), "7");
+		result = api.validate(iv, getRulesNumber(), "7");
 		System.out.printf("Validate String:  code = %d, message = %s\n", result.getCode(), result.getMessage());
 	}
 

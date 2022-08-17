@@ -12,5 +12,5 @@ public interface ActionInterface
 	 * @param scale    scale when "dataType" is "N", reserved for the future.
 	 * @return true - valid passed, false - otherwise.
 	 */
-	boolean valid(String src, String ruleText, char dataType, int... scale);
+	boolean doValidate(String src, String ruleText, char dataType, int... scale);
 }
