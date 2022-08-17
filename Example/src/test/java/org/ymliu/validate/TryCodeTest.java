@@ -1,10 +1,10 @@
-package org.ymliu.example.quality;
+package org.ymliu.validate;
 
 public class TryCodeTest
 {
 	public static void main(String[] args){
-		String str = "-Y";
-		String regex = "(\\+|-)?[0-9]+(Y|M|D|y|m|d)";
+		String str = "-02Y";
+		String regex = "([+\\-])?[1-9][0-9]+([YMDymd])";
 		if (str.matches(regex)){
 			String s = str.substring(0,str.length()-1);
 

@@ -1,4 +1,4 @@
-package org.ymliu.example.quality.action;
+package org.ymliu.validate.action;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
@@ -532,6 +532,7 @@ public enum ValidateActionEnum
 		return ret;
 	});
 
+	private static final String regexRelativeDate = "([+\\-])?[1-9][0-9]+([YMDymd])";
 	private static final SimpleDateFormat[] innerSdfArray = new SimpleDateFormat[]{
 			new SimpleDateFormat("yyyy-MM-dd"),
 			new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS"),
@@ -606,8 +607,7 @@ public enum ValidateActionEnum
 		// Only String or BigDecimal supported.
 		if (clazz == String.class || clazz == BigDecimal.class || clazz == Date.class)
 		{
-			String[] s =
-					Arrays.stream(ruleText.split("\\|")).filter(str -> str != null && !"".equals(str)).toArray(String[]::new);
+			String[] s = Arrays.stream(ruleText.split("\\|")).filter(str -> str != null && !"".equals(str)).toArray(String[]::new);
 
 			@SuppressWarnings("unchecked") T[] newArray = (T[]) Array.newInstance(clazz, s.length);
 			for (int i = 0; i < s.length; i++)
@@ -647,7 +647,7 @@ public enum ValidateActionEnum
 		}
 
 		// Relative Date.
-		if (src.matches("(\\+|-)?[0-9]+(Y|y|M|m|D|d|W|w)"))
+		if (src.matches(regexRelativeDate))
 		{
 			// Relative Date.
 			String sType = src.substring(src.length() - 1).toUpperCase();
@@ -672,7 +672,7 @@ public enum ValidateActionEnum
 			return calendar.getTime();
 		}
 
-		// Absolute Date.
+		// Absolute Date, convert date by each format.
 		Date date;
 		for (SimpleDateFormat sdf : innerSdfArray)
 		{
@@ -687,12 +687,6 @@ public enum ValidateActionEnum
 			return date;
 		}
 		throw new RuntimeException("Invalid date format: " + src);
-	}
-
-	private static Date relativeDate(String ret)
-	{
-		//if (ret.matches("YMD"))
-		return null;
 	}
 
 	public boolean doValid(String src, String ruleText, char dataType, int... scale)

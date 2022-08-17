@@ -1,4 +1,4 @@
-package org.ymliu.example.quality.bean;
+package org.ymliu.validate.bean;
 
 /**
  * Validate Result Bean.
@@ -17,7 +17,7 @@ public class ValidateResult
 	public static final ValidateResult FAILURE_NO_RULES = new ValidateResult(-253, "未定义校验规则。");
 	public static final ValidateResult FAILURE_FORMAT = new ValidateResult(-252, "数据格式错误。");
 	private final int code; // 0 - passed, -1 - valid not pass, other - system error.
-	private final String message; // error message, null for code == 0.
+	private final String message; // error message.
 
 	public ValidateResult(int code, String message)
 	{
@@ -33,11 +33,5 @@ public class ValidateResult
 	public String getMessage()
 	{
 		return message;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "ValidateResult{" + "code=" + code + ", message='" + message + '\'' + '}';
 	}
 }

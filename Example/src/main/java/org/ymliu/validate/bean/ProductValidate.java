@@ -1,32 +1,23 @@
-package org.ymliu.example.quality.bean;
-
-import java.util.List;
+package org.ymliu.validate.bean;
 
 /**
  * 产品校验
  */
 public class ProductValidate
 {
-	private final String id;
-	private final String productId;
-	private final String itemId;
-	private final int itemOrder;
-	private List<ItemValidate> list;
+	private String id;
+	private String productId;
+	private String itemId;
+	private int itemOrder;
 
 	public ProductValidate(String id)
 	{
 		// Get all properties from DB according to id.
 		this.id = id;
-
-		// TODO read db to set properties.
-		this.productId = "Product";
-		this.itemId = "Item1";
-		this.itemOrder = 0;
 	}
 
 	public ProductValidate(String id, String productId, String itemId, int itemOrder)
 	{
-		// TODO example
 		this.id = id;
 		this.productId = productId;
 		this.itemId = itemId;
@@ -51,5 +42,25 @@ public class ProductValidate
 	public int getItemOrder()
 	{
 		return itemOrder;
+	}
+
+	public void setId(String id)
+	{
+		this.id = id;
+	}
+
+	public void setProductId(String productId)
+	{
+		this.productId = productId;
+	}
+
+	public void setItemId(String itemId)
+	{
+		this.itemId = itemId;
+	}
+
+	public void setItemOrder(int itemOrder)
+	{
+		this.itemOrder = itemOrder;
 	}
 }
