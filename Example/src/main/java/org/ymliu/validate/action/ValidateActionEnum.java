@@ -602,7 +602,6 @@ public enum ValidateActionEnum
 	 */
 	private static <T> T[] parseValue(String ruleText, final Class<T> clazz)
 	{
-		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 		// Type check!
 		// Only String or BigDecimal supported.
 		if (clazz == String.class || clazz == BigDecimal.class || clazz == Date.class)
@@ -619,13 +618,13 @@ public enum ValidateActionEnum
 
 				if (clazz == BigDecimal.class)
 				{
-					BigDecimal dec = new BigDecimal(s[i]);
+					BigDecimal dec = new BigDecimal(s[i].trim());
 					newArray[i] = clazz.cast(dec);
 				}
 
 				if (clazz == Date.class)
 				{
-					newArray[i] = clazz.cast(convertDate(s[i]));
+					newArray[i] = clazz.cast(convertDate(s[i].trim()));
 				}
 			}
 			return newArray;
@@ -669,6 +668,10 @@ public enum ValidateActionEnum
 					calendar.add(Calendar.WEEK_OF_YEAR, i); /* week */
 					break;
 			}
+			calendar.set(Calendar.HOUR, 0);
+			calendar.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.SECOND, 0);
+			calendar.set(Calendar.MILLISECOND, 0);
 			return calendar.getTime();
 		}
 

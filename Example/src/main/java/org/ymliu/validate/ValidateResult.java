@@ -1,4 +1,4 @@
-package org.ymliu.validate.bean;
+package org.ymliu.validate;
 
 /**
  * Validate Result Bean.

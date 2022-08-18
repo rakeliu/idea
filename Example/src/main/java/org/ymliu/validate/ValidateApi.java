@@ -7,7 +7,6 @@ import java.util.List;
 import org.ymliu.validate.action.ValidateActionEnum;
 import org.ymliu.validate.bean.ItemValidate;
 import org.ymliu.validate.bean.ProductValidate;
-import org.ymliu.validate.bean.ValidateResult;
 import org.ymliu.validate.bean.ValidateRule;
 
 public class ValidateApi
@@ -120,6 +119,4 @@ public class ValidateApi
 				return template.replace(s, "％ｓ");
 		}
 	}
-
-
 }

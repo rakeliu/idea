@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.ymliu.validate.bean.ItemValidate;
-import org.ymliu.validate.bean.ValidateResult;
 import org.ymliu.validate.bean.ValidateRule;
 
 public class ValidateTest
